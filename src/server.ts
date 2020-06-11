@@ -1,9 +1,26 @@
-import express = require('express');
-// Create a new express app instance
-const app: express.Application = express();
-app.get('/', function (req, res) {
-res.send('Hello World!');
+import * as bodyParser from 'body-parser';
+
+import { Container } from 'inversify';
+import { interfaces, InversifyExpressServer, TYPE } from 'inversify-express-utils';
+
+// declare metadata by @controller annotation
+import "./controllers/tower-controller";
+
+// set up container
+let container = new Container();
+
+// set up bindings
+//container.bind<FooService>('FooService').to(FooService);
+
+// create server
+let server = new InversifyExpressServer(container);
+server.setConfig((app) => {
+  // add body parser
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  app.use(bodyParser.json());
 });
-app.listen(3001, function () {
-console.log('App is listening on port 3000!');
-});
+
+let app = server.build();
+app.listen(3001);
