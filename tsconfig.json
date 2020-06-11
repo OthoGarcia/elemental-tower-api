@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./bin",
+    "composite": false,
+    "target": "es2017",
+    "module": "commonjs",
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "types": [
+      "reflect-metadata",
+      "node",
+      "mocha"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "sourceMap": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/typings.d.ts",
+    "src/model.ts",
+    "src/app.ts",
+    "src/bootstrap.ts",
+    "src/index.ts",
+    "src/server.ts"
+  ],
+  "exclude": [
+    "test/**"
+  ]
+}
